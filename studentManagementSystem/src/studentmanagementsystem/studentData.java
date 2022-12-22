@@ -1,18 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package studentmanagementsystem;
 
 import java.sql.Date;
 
-/**
- *
- * @author WINDOWS 10
- * SUBSCRIBE OUR YOUTUBE CHANNEL -> https://www.youtube.com/channel/UCPgcmw0LXToDn49akUEJBkQ
- * THANKS FOR YOUR SUPPORT : ) 
- */
 public class studentData {
 
     private Integer studentNum;
@@ -28,7 +17,6 @@ public class studentData {
     private Double secondSem;
     private Double finals;
 
-    // MAKE SURE THAT SAME DATATYPE THAT YOU WILL PUT THERE 
     public studentData(Integer studentNum, String year, String course, String firstName, String lastName, String gender, Date birth, String status, String image) {
         this.studentNum = studentNum;
         this.year = year;
@@ -98,5 +86,4 @@ public class studentData {
         return finals;
     }
 
-    // PLEASE FOLLOW ME IF THE VARS ARE THE SAME TO ME 
 }

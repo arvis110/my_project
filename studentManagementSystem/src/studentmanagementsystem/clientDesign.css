@@ -58,7 +58,7 @@
 }
 
 .card{
-    -fx-background-color:linear-gradient(to right, #344250, #3c6382);
+    -fx-background-color:linear-gradient(to right, #4dc981, #3c6382);
     -fx-background-radius:4px;
 }
 

@@ -17,7 +17,7 @@
             <AnchorPane prefHeight="409.0" prefWidth="298.0" styleClass="left-form" stylesheets="@loginDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <FontAwesomeIcon fill="WHITE" glyphName="GRADUATION_CAP" layoutX="72.0" layoutY="186.0" size="10em" />
-                  <Label layoutX="19.0" layoutY="205.0" text="Student Management System" textFill="WHITE">
+                  <Label layoutX="85.0" layoutY="205.0" text="Student System" textFill="WHITE">
                      <font>
                         <Font name="Tahoma" size="20.0" />
                      </font>

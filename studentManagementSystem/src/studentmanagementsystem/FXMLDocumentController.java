@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package studentmanagementsystem;
 
 import java.net.URL;
@@ -51,28 +46,41 @@ public class FXMLDocumentController implements Initializable {
 //    DATABASE TOOls
     private Connection connect;
     private PreparedStatement prepare;
+
+    private PreparedStatement stdntPrepare;
     private ResultSet result;
+
+    private ResultSet stdntResult;
     
-//    NOW LETS CREATE OUR DATABASE : ) 
+//    CREATE DATABASE : )
     
     private double x= 0 ;
     private double y= 0;
     
     public void loginAdmin(){
-        
+
         String sql = "SELECT * FROM admin WHERE username = ? and password = ?";
+
+//        String stdntSql = "SELECT * FROM user WHERE username = ? and password = ?";
         
         connect = database.connectDb();
-        
-        try{ // IT WORKS GOOD : ) NOW LETS DESIGN THE DASHBOARD FORM : ) 
+
+        try{
             Alert alert;
-            
+
             prepare = connect.prepareStatement(sql);
             prepare.setString(1, username.getText());
             prepare.setString(2, password.getText());
             
             result = prepare.executeQuery();
-//            CHECK IF FIELDS ARE EMPTTY
+
+//            stdntPrepare = connect.prepareStatement(stdntSql);
+//            stdntPrepare.setString(3, username.getText());
+//            stdntPrepare.setString(4, password.getText());
+//            stdntResult = stdntPrepare.executeQuery();
+
+
+//            text field hooson uguig shalgah
             if(username.getText().isEmpty() || password.getText().isEmpty()){
                 alert = new Alert(AlertType.ERROR);
                 alert.setTitle("Error Message");
@@ -80,42 +88,75 @@ public class FXMLDocumentController implements Initializable {
                 alert.setContentText("Please fill all blank fields");
                 alert.showAndWait();
             }else{
-                if(result.next()){
+                if(result.next()) {
+                    String userType = result.getString("type");
 //                    THEN PROCEED TO DASHBOARD FORM
+                    if (userType.equals("ADMIN")){
 
-                    getData.username = username.getText();
+                        getData.username = username.getText();
 
                     alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
                     alert.setContentText("Successfully Login!");
                     alert.showAndWait();
-                    
-//                    TO HIDE THE LOGIN FORM
+
+                    //hide login form
                     loginBtn.getScene().getWindow().hide();
-                    //LINK YOUR DASHBOARD 
+                    //dashboard link
                     Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
-                    
+
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
-                    
-                    root.setOnMousePressed((MouseEvent event) ->{
+
+                    root.setOnMousePressed((MouseEvent event) -> {
                         x = event.getSceneX();
                         y = event.getSceneY();
                     });
-                    
-                    root.setOnMouseDragged((MouseEvent event) ->{
+
+                    root.setOnMouseDragged((MouseEvent event) -> {
                         stage.setX(event.getScreenX() - x);
                         stage.setY(event.getScreenY() - y);
                     });
-                    
+
                     stage.initStyle(StageStyle.TRANSPARENT);
-                    
+
                     stage.setScene(scene);
                     stage.show();
-                    
+                } else if (userType.equals("USER")) {
+                        getData.username = username.getText();
+
+                        alert = new Alert(AlertType.INFORMATION);
+                        alert.setTitle("Information Message");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Successfully Login!");
+                        alert.showAndWait();
+
+                        //hide login form
+                        loginBtn.getScene().getWindow().hide();
+                        //dashboard link
+                        Parent root = FXMLLoader.load(getClass().getResource("client.fxml"));
+
+                        Stage stage = new Stage();
+                        Scene scene = new Scene(root);
+
+                        root.setOnMousePressed((MouseEvent event) -> {
+                            x = event.getSceneX();
+                            y = event.getSceneY();
+                        });
+
+                        root.setOnMouseDragged((MouseEvent event) -> {
+                            stage.setX(event.getScreenX() - x);
+                            stage.setY(event.getScreenY() - y);
+                        });
+
+                        stage.initStyle(StageStyle.TRANSPARENT);
+
+                        stage.setScene(scene);
+                        stage.show();
+                    }
                 }else{
-                    // THEN ERROR MESSAGE WILL APPEAR
+                    // error massage
                     alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Error Message");
                     alert.setHeaderText(null);
@@ -123,6 +164,7 @@ public class FXMLDocumentController implements Initializable {
                     alert.showAndWait();
                 }
             }
+
         }catch(Exception e){e.printStackTrace();}
         
     }
@@ -130,12 +172,9 @@ public class FXMLDocumentController implements Initializable {
     public void close(){
         System.exit(0);
     }
-    
-    //LETS NAME THE COMPONENTS ON LOGIN FORM : )
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+
     }    
     
 }

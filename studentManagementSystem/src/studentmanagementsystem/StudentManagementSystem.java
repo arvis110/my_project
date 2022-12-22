@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package studentmanagementsystem;
 
 import javafx.application.Application;
@@ -13,12 +8,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-/**
- *
- * @author WINDOWS 10
- * SUBSCRIBE OUR YOUTUBE CHANNEL -> https://www.youtube.com/channel/UCPgcmw0LXToDn49akUEJBkQ
- * THANKS FOR YOUR SUPPORT : ) 
- */
 public class StudentManagementSystem extends Application {
     
     private double x = 0 ;
@@ -29,7 +18,6 @@ public class StudentManagementSystem extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         
         Scene scene = new Scene(root);
-//        LETS DESIGN IT USING CSS : ) 
 
         root.setOnMousePressed((MouseEvent event) ->{
             x = event.getSceneX();
@@ -52,7 +40,6 @@ public class StudentManagementSystem extends Application {
         stage.setScene(scene);
         stage.show();
     }
-//WE FORGOT TO IMPORT FONT AWESOME JAR FILE TO LIBRARIES : ) 
     /**
      * @param args the command line arguments
      */
